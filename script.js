@@ -5,10 +5,8 @@ const password = document.getElementById('pass');
 const Cpass = document.getElementById('cpass');
 const Submit = document.getElementById('btn');
 
-
-form.addEventListener = ('submit', (e) => {
-    e.preventdefault();
-
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
     ValidateInputs();
 })
 
