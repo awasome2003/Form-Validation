@@ -6,8 +6,8 @@ const Cpass = document.getElementById('cpass');
 const Submit = document.getElementById('btn');
 
 
-form.addEventListener = ('submit', (e) => {
-    e.preventdefault();
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
     ValidateInputs();
 })
@@ -35,16 +35,16 @@ const ValidateInputs = () => {
 
     if (PasswordValue === '') {
         SetError(password, 'Password is required.');
-    } else if (PasswordValue.lenght < 8) {
+    } else if (password.value.length > 8) {
         SetError(password, 'Password must be at least 8 characters.')
     } else {
         SetSuccess(password)
     }
 
-    if (cPasswordValue === " ") {
+    if (cPasswordValue === '') {
         SetError(Cpass, 'Please Confirm Your Password.')
     } else if (cPasswordValue !== PasswordValue) {
-        SetError(password, "Password doesn't matched")
+        SetError(Cpass, "Password doesn't matched")
     } else {
         SetSuccess(Cpass)
     }
@@ -54,7 +54,6 @@ const SetError = (element, message) => {
     const inputControl = element.parentElement;
     const ErrorDisplay = inputControl.querySelector('.error');
     ErrorDisplay.innerText = message;
-
     inputControl.classList.add('error');
     inputControl.classList.remove('success');
 }
@@ -62,13 +61,12 @@ const SetError = (element, message) => {
 const SetSuccess = element => {
     const inputControl = element.parentElement;
     const ErrorDisplay = inputControl.querySelector('.error');
-
     ErrorDisplay.innerText = '';
     inputControl.classList.add('success');
     inputControl.classList.remove('error');
 }
 
-function isValidEmail(e) {
-    var reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-z]{2,}))$/;
-    return reg.test(e);
+function isValidEmail(email) {
+    const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-z]{2,}))$/;
+    return reg.test(String(email).toLowerCase());
 }
