@@ -1,18 +1,92 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
 
-html,body{
+html,
+body {
     width: 100%;
     height: 100vh;
+    background-image: url(bg-img.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.form-control.success input{
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 450px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    backdrop-filter: blur(3px) saturate(158%);
+    -webkit-backdrop-filter: blur(3px) saturate(158%);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+form h1 {
+    text-align: center;
+    color: aqua;
+    border-bottom: 2px solid black;
+    margin-bottom: 15px;
+}
+
+form .form-control {
+    margin-bottom: 8px;
+}
+
+.form-control label {
+    font-size: 20px;
+    font-weight: 600;
+    color: aqua;
+}
+
+.form-control input{
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+    background: transparent;
+    color: whitesmoke;
+}
+
+
+#btn{
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+#btn:hover{
+    color: aqua;
+    transition: .4s;
+}
+
+.error {
+    color: red;
+}
+
+.form-control.success input {
     border-color: green;
 }
-.form-control.error input{
-    border-color: red;
+
+.form-control.error input {
+    border: 2px solid red;
 }
