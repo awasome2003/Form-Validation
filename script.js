@@ -1,80 +1,48 @@
 const form = document.getElementById('Form');
 const username = document.getElementById('username');
-const Email = document.getElementById('email');
+const email = document.getElementById('email');
 const password = document.getElementById('pass');
-const Cpass = document.getElementById('cpass');
-const Submit = document.getElementById('btn');
+const cPassword = document.getElementById('cpass');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    ValidateInputs();
-})
+    validateInputs();
+});
 
-const ValidateInputs = () => {
-    const UsernameValue = username.value.trim();
-    const EmailValue = Email.value.trim();
-    const PasswordValue = password.value.trim();
-    const cPasswordValue = Cpass.value.trim();
+const validateInputs = () => {
+    validateField(username, 'Username is required.');
+    validateField(email, 'Email is required.', isValidEmail);
+    validateField(password, 'Password is required.', (value) => value.length >= 8);
+    validateField(cPassword, 'Please confirm your password.', (value) => value === password.value.trim());
+}
 
-    if (UsernameValue === '') {
-        SetError(username, 'Username is required.');
-    }
-    else {
-        SetSuccess(username);
-    }
-
-    if (EmailValue === '') {
-        SetError(Email, 'Email is required')
-    }
-    else if (!isValidEmail(EmailValue)) {
-        SetError(Email, 'Please provide a valid email address.')
-    }
-    else {
-        SetSuccess(Email)
-    }
-
-    if (PasswordValue === '') {
-        SetError(password, 'Password is required.')
-
-    }
-    else if (password.value.lenght > 8) {
-        SetError(password, 'Password must be at least 8 characters.')
-
-    }
-    else {
-        SetSuccess(password)
-    }
-
-    if (cPasswordValue === '') {
-        SetError(Cpass, 'Please Confirm Your Password.')
-    }
-    else if (cPasswordValue !== PasswordValue) {
-        SetError(Cpass, "Password doesn't matched")
-    }
-    else {
-        SetSuccess(Cpass)
+const validateField = (input, message, validationFn = (value) => value.trim() !== '') => {
+    const inputValue = input.value.trim();
+    if (!validationFn(inputValue)) {
+        setError(input, message);
+    } else {
+        setSuccess(input);
     }
 }
 
-const SetError = (element, message) => {
+const setError = (element, message) => {
     const inputControl = element.parentElement;
-    const ErrorDisplay = inputControl.querySelector('.error');
-    ErrorDisplay.innerText = message;
+    const errorDisplay = inputControl.querySelector('.error');
+    errorDisplay.innerText = message;
 
     inputControl.classList.add('error');
     inputControl.classList.remove('success');
 }
 
-const SetSuccess = element => {
+const setSuccess = (element) => {
     const inputControl = element.parentElement;
-    const ErrorDisplay = inputControl.querySelector('.error');
-
-    ErrorDisplay.innerText = '';
+    const errorDisplay = inputControl.querySelector('.error');
+    errorDisplay.innerText = '';
     inputControl.classList.add('success');
     inputControl.classList.remove('error');
 }
 
 function isValidEmail(email) {
-    const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-z]{2,}))$/;
+    const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return reg.test(String(email).toLowerCase());
 }
