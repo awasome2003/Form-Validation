@@ -7,32 +7,32 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
+    <section class="container">
       <form class="form" id="Form" onsubmit="return ValidateInputs()">
         <h1>Registration Form</h1>
         <div class="form-control">
-          <label>Username :</label>
-          <input type="text" name="" id="username" /><br>
-          <span class="error">*</span>
+          <label for="username">Username:</label>
+          <input type="text" id="username" required minlength="3"/>
+          <span class="error" aria-live="polite">*</span>
         </div>
         <div class="form-control">
-          <label>Email :</label>
-          <input type="email" name="" id="email" /><br>
-          <span class="error">*</span>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required/>
+          <span class="error" aria-live="polite">*</span>
         </div>
         <div class="form-control">
-          <label>Password :</label>
-          <input type="password" name="" id="pass" /><br>
-          <span class="error">*</span>
+          <label for="pass">Password:</label>
+          <input type="password" id="pass" required minlength="8"/>
+          <span class="error" aria-live="polite">*</span>
         </div>
         <div class="form-control">
-          <label>Confirm Password :</label>
-          <input type="password" name="" id="cpass" /><br>
-          <span class="error">*</span>
+          <label for="cpass">Confirm Password:</label>
+          <input type="password" id="cpass" required/>
+          <span class="error" aria-live="polite">*</span>
         </div>
-        <button type="submit" id="btn" value="submit" name="">Submit</button>
+        <button type="submit" id="btn">Submit</button>
       </form>
-    </div>
+    </section>
     <script src="./script.js"></script>
   </body>
 </html>
